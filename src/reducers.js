@@ -9,7 +9,7 @@ import {
 } from "./actions";
 
 const initial = {
-  random:[],
+  random:null,
   favs: [],
   current: null,
   error: null,
@@ -36,7 +36,7 @@ export function myReducer(state = initial, action) {
     case FAV_REMOVE:
       return {
         ...state,
-        favs: state.favs.filter(item => (item.id !== action.payload))
+        favs: state.favs.filter(item => (item.Year !== action.payload))
       };
 
     case FETCH_SUCCESS:

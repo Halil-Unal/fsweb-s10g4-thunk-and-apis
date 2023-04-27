@@ -3,20 +3,20 @@ import React from 'react'
 
 function Item({ data }) {
   return (
-    <div className='shadow-md bg-white text-center'>
+    data && <div className='shadow-md bg-white text-center'>
 
-      <p className='text-2xl p-10'>{data && data.map((ran) => (
-    <div key={ran.Year}>
-      
-      <p>{ran.Nation}</p>
-      <p>{ran.Population}</p>
+    <p className='text-2xl p-10'>
+  <div key={data.Year}>
     
-      <p>{ran.Year}</p>
-      
-    </div>
-  ))}</p>
+    <p>{data.Nation}</p>
+    <p>{data.Population}</p>
+  
+    <p>{data.Year}</p>
+    
+  </div>
+</p>
 
-    </div>
+  </div>
   )
 }
 

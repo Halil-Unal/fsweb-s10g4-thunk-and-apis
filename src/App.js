@@ -3,8 +3,8 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import Item from "./components/Item";
 import FavItem from "./components/FavItem";
 import { useSelector, useDispatch } from "react-redux";
-import { addFav, fetchAnother } from "./actions";
-
+import { addFav, fetchAnother, removeFav } from "./actions";
+import { useState } from "react";
 export default function App() {
   const loading = useSelector((state) => state.loading);
   const random = useSelector((state) => state.random);
@@ -15,7 +15,12 @@ export default function App() {
     dispatch(fetchAnother());
   }, []);
 
-console.log(random);
+  const cardclick = () => {
+    const selectedMovie = random;
+    dispatch(addFav(selectedMovie));
+   
+  };
+  
   return (
     <div className="wrapper max-w-xl mx-auto px-4">
       <nav className="flex text-2xl pb-6 pt-8 gap-2 justify-center">
@@ -47,11 +52,11 @@ console.log(random);
   <Item data={random} />
 
           <div className="flex gap-3 justify-end py-3">
-            <button  className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500">
+            <button  onClick={() => dispatch(fetchAnother())}  className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500">
               Başka bir tane
             </button>
             <button
-              onClick={addFav}
+              onClick={cardclick}
               className="select-none px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white"
             >
               Favorilere ekle
@@ -63,7 +68,7 @@ console.log(random);
           <div className="flex flex-col gap-3">
             {favs.length > 0 ? (
               favs.map((item) => (
-                <FavItem key={item.key} id={item.key} title={item.activity} />
+                <FavItem key={item.Year} data={item} id={item.Year}  />
               ))
             ) : (
               <div className="bg-white p-6 text-center shadow-md">
