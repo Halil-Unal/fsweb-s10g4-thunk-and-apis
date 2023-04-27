@@ -20,7 +20,7 @@ export default function App() {
     dispatch(addFav(selectedMovie));
    
   };
-  
+  console.log(random);
   return (
     <div className="wrapper max-w-xl mx-auto px-4">
       <nav className="flex text-2xl pb-6 pt-8 gap-2 justify-center">
@@ -68,7 +68,7 @@ export default function App() {
           <div className="flex flex-col gap-3">
             {favs.length > 0 ? (
               favs.map((item) => (
-                <FavItem key={item.Year} data={item} id={item.Year}  />
+                <FavItem key={item.Year} data={item}  />
               ))
             ) : (
               <div className="bg-white p-6 text-center shadow-md">

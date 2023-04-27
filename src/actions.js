@@ -21,11 +21,13 @@ export const removeFav = (id) => {
 
 export const fetchAnother = () => dispatch => {
   axios
-  .get("https://datausa.io/api/data?drilldowns=Nation&measures=Population")
-  .then(res => {
-    const shuffledData = res.data.data.sort(() => Math.random() - 0.5); 
-    const randomItem = shuffledData[0]; 
-    dispatch({ type: FETCH_ANOTHER, payload: randomItem });
-  })
-  .catch(err => dispatch({ type: FETCH_ANOTHER , payload: err }));
+    .get("https://datausa.io/api/data?drilldowns=Nation&measures=Population")
+    .then(res => {
+      const data = res.data.data;
+      const randomIndex = Math.floor(Math.random() * data.length);
+      const randomItem = data[randomIndex];
+      dispatch({ type: FETCH_ANOTHER, payload: randomItem });
+    })
+    .catch(err => dispatch({ type: FETCH_ANOTHER , payload: err }));
 };
+
